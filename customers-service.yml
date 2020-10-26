@@ -1,4 +1,4 @@
-﻿spring:
+spring:
   profiles: default
 eureka:
   instance:
@@ -7,11 +7,13 @@ eureka:
 
 ---
 spring:
-  profiles: Docker
-  zipkin:
-    baseUrl: http://tracing-server:9411
-server:
-  port: 8081
+  profiles: docker
+management:
+  tracing:
+    exporter:
+      zipkin:
+        endpoint: http://tracing-server:9411/api/v2/spans
+        useShortTraceIds: true
 eureka:
   client:
     serviceUrl: http://discovery-server:8761/eureka/
