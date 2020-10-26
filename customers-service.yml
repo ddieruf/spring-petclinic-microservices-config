@@ -4,11 +4,19 @@ eureka:
   instance:
     # enable to register multiple app instances with a random server port
     instance-id: ${spring.application.name}:${random.uuid}
-
+management:
+  endpoints:
+    actuator:
+      exposure:
+        include: "*"
 ---
 spring:
   profiles: Docker
 management:
+  endpoints:
+    actuator:
+      exposure:
+        include: "*"
   tracing:
     exporter:
       zipkin:
@@ -17,3 +25,6 @@ management:
 eureka:
   client:
     serviceUrl: http://discovery-server:8761/eureka/
+  instance:
+    HealthCheckUrlPath: /actuator/health
+    HomePageUrlPath: /actuator
