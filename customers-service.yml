@@ -7,7 +7,7 @@ eureka:
 
 ---
 spring:
-  profiles: docker
+  profiles: Docker
 management:
   tracing:
     exporter:
