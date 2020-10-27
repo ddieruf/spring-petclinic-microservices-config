@@ -1,18 +1,31 @@
-﻿spring:
+﻿management:
+  endpoints:
+    actuator:
+      exposure:
+        include: "*"
+spring:
+  tracing:
+    exporter:
+      zipkin:
+        useShortTraceIds: true
+eureka:
+  instance:
+    HealthCheckUrlPath: /actuator/health
+    HomePageUrlPath: /actuator
+---
+spring:
   profiles: default
 eureka:
   instance:
     # enable to register multiple app instances with a random server port
     instance-id: ${spring.application.name}:${random.uuid}
-
 ---
 spring:
-  profiles: docker
-  zipkin:
-    baseUrl: http://tracing-server:9411
-server:
-  port: 8082
+  profiles: Docker
+  tracing:
+    exporter:
+      zipkin:
+        endpoint: http://tracing-server:9411/api/v2/spans
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://discovery-server:8761/eureka/
+    serviceUrl: http://discovery-server:8761/eureka/
