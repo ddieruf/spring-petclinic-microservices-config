@@ -6,7 +6,7 @@ management:
   endpoints:
     actuator:
       exposure:
-        include: "*"
+        include: [ "*" ]
 spring:
   tracing:
     exporter:
