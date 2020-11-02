@@ -21,7 +21,8 @@ logging:
   level:
     root: INFO
     org.springframework.cloud: INFO
-    org.springframework.cloud.sleuth.instrument.web: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+    #org.springframework.cloud.sleuth.zipkin2: DEBUG
 
 ---
 spring:
